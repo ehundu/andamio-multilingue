@@ -1,0 +1,9 @@
+{# La tarjeta de un servicio, de una noticia o de lo que sea: su título, una frase y un dato. Recibe `p` (la página) y, si quiere,
+   `dato` (lo que sale debajo: el precio, o la fecha) #}
+<li class="tarjeta">
+  <a class="tarjeta__enlace" href="{{ p.url }}">
+    <strong>{{ p.titulo }}</strong>
+    {% if p.descripcion %}<span class="tarjeta__texto">{{ p.descripcion }}</span>{% endif %}
+    {% if dato %}<span class="tarjeta__dato">{{ dato }}</span>{% endif %}
+  </a>
+</li>

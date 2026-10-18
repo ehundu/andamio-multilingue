@@ -1,0 +1,7 @@
+# Lo que es igual en todos los idiomas: el nombre, el correo y el teléfono. Un fichero de datos sin código de idioma es común
+# a todas las páginas. En una plantilla son `datos.estudio.nombre`, y en un texto en Markdown, [dato clave="estudio.nombre"].
+# Lo que cambia por idioma (la dirección, con su calle y su ciudad) está en estudio.es.yml y estudio.eu.yml, que se
+# mezclan con este.
+nombre: Ibaia Estudio
+email: hola@ibaia.example
+telefono: 944 000 000

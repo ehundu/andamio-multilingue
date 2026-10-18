@@ -1,0 +1,42 @@
+{% extends 'plantillas/base.twig' %}
+
+{# La portada: su texto, los servicios y las dos últimas noticias. `coleccion()` saca solo las páginas del idioma de esta,
+   así que la portada en euskera no enseña nada en castellano #}
+{% block cuerpo %}
+{% set t = datos.textos %}
+<div class="contenedor portada">
+  <header class="portada__cabecera">
+    <h1>{{ pagina.titulo }}</h1>
+    <div class="prosa">{{ pagina.contenido }}</div>
+    <p class="portada__botones">
+      <a class="boton" href="{{ datos.menus.servicios }}">{{ t.verServicios }}</a>
+      <a class="boton boton--claro" href="{{ datos.menus.contacto }}">{{ t.pedirPresupuesto }}</a>
+    </p>
+  </header>
+
+  <section class="portada__bloque" aria-labelledby="servicios">
+    <h2 id="servicios">{{ t.servicios }}</h2>
+    <ul class="tarjetas">
+      {% for p in coleccion('servicios')|orden('orden') %}
+      {% set dato = p.precio %}
+      {% include 'parciales/tarjeta.twig' %}
+      {% endfor %}
+    </ul>
+  </section>
+
+  {# Las noticias que haya en este idioma: en castellano hay una más que en euskera, porque no todo está traducido #}
+  {% set noticias = coleccion('noticias')|orden('fecha desc')|limite(2) %}
+  {% if noticias|length %}
+  <section class="portada__bloque" aria-labelledby="noticias">
+    <h2 id="noticias">{{ t.ultimasNoticias }}</h2>
+    <ul class="tarjetas">
+      {% for p in noticias %}
+      {% set dato = p.fecha|fecha %}
+      {% include 'parciales/tarjeta.twig' %}
+      {% endfor %}
+    </ul>
+    <p class="portada__mas"><a href="{{ datos.menus.noticias }}">{{ t.verNoticias }} →</a></p>
+  </section>
+  {% endif %}
+</div>
+{% endblock %}

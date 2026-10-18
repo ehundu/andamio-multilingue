@@ -1,0 +1,39 @@
+{
+    "name": "ehundu/andamio-multilingue",
+    "description": "Una web completa en dos idiomas (castellano y euskera) hecha con Ehundu, con sus páginas enlazadas entre idiomas, selector, hreflang, menús y textos por idioma, para empezar.",
+    "type": "project",
+    "license": "MIT",
+    "keywords": [
+        "ehundu",
+        "andamio",
+        "scaffold",
+        "scaffolding",
+        "starter",
+        "skeleton",
+        "multilingue",
+        "bilingue",
+        "euskera",
+        "i18n",
+        "plantilla",
+        "sitio-estatico",
+        "generador-de-sitios-estaticos"
+    ],
+    "homepage": "https://ehundu.com/documentacion/empezar/",
+    "require": {
+        "php": ">=8.4",
+        "ehundu/ehundu": "^0.16"
+    },
+    "scripts": {
+        "servir": "ehundu servir",
+        "compilar": "ehundu compilar",
+        "desplegar": "ehundu desplegar"
+    },
+    "scripts-descriptions": {
+        "servir": "Previsualiza el sitio en http://127.0.0.1:8000/ y rehace solo lo que cambia.",
+        "compilar": "Compila el sitio en la carpeta salida/.",
+        "desplegar": "Compila el sitio y lo sube al destino de sitio.yml."
+    },
+    "config": {
+        "process-timeout": 0
+    }
+}

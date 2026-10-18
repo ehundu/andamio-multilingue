@@ -1,0 +1,15 @@
+{% extends 'plantillas/base.twig' %}
+
+{# La lista de los servicios del idioma de la página #}
+{% block cuerpo %}
+<div class="contenedor listado">
+  <h1>{{ pagina.titulo }}</h1>
+  <div class="prosa">{{ pagina.contenido }}</div>
+  <ul class="tarjetas">
+    {% for p in coleccion('servicios')|orden('orden') %}
+    {% set dato = p.precio %}
+    {% include 'parciales/tarjeta.twig' %}
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

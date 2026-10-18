@@ -1,0 +1,15 @@
+{% extends 'plantillas/base.twig' %}
+
+{# Una noticia. Algunas solo existen en un idioma: si esta no está traducida, el selector de idioma lleva a la portada del
+   otro #}
+{% block cuerpo %}
+{% set t = datos.textos %}
+<article class="contenedor ficha">
+  <header>
+    <p class="antetitulo"><time datetime="{{ pagina.fecha|date('Y-m-d') }}">{{ pagina.fecha|fecha }}</time></p>
+    <h1>{{ pagina.titulo }}</h1>
+  </header>
+  <div class="prosa">{{ pagina.contenido }}</div>
+  <p class="ficha__cita"><a href="{{ datos.menus.noticias }}">← {{ t.volverNoticias }}</a></p>
+</article>
+{% endblock %}

@@ -1,0 +1,16 @@
+# El menú de la cabecera en castellano. Las direcciones llevan el prefijo del idioma: el castellano no lo tiene
+# (/servicios/) y el euskera sí (/eu/zerbitzuak/). Un menú no es la traducción uno a uno del otro: si una sección solo
+# existe en un idioma, su menú no la lleva.
+inicio: /
+contacto: /contacto/
+servicios: /servicios/
+noticias: /noticias/
+principal:
+  - texto: Servicios
+    url: /servicios/
+  - texto: Noticias
+    url: /noticias/
+  - texto: Sobre nosotros
+    url: /sobre-nosotros/
+  - texto: Contacto
+    url: /contacto/

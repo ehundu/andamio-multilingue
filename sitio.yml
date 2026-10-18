@@ -1,0 +1,39 @@
+# Lo único obligatorio es el nombre y la dirección del sitio, sin ruta
+nombre: Ibaia Estudio
+url: https://ejemplo.com
+
+formato: 1
+zonaHoraria: Europe/Madrid
+
+# Los idiomas del sitio. El primero es el predeterminado: sus páginas no llevan prefijo en la dirección (/servicios/) y las
+# de los demás llevan el suyo (/eu/zerbitzuak/). El nombre es el que sale en el selector de idioma de la cabecera.
+idiomas:
+  - codigo: es
+    nombre: Castellano
+  - codigo: eu
+    nombre: Euskara
+
+# Un feed Atom con las noticias en cada idioma: /feed.xml en castellano y /eu/feed.xml en euskera
+feed:
+  coleccion: noticias
+  titulo: Ibaia Estudio
+
+# Un enlace a otro dominio escrito en Markdown se abre en otra pestaña, con un aviso para los lectores de pantalla,
+# que cambia según el idioma de la página
+enlacesExternos:
+  aviso:
+    es: (se abre en una pestaña nueva)
+    eu: (fitxa berri batean irekitzen da)
+  clase: oculto
+  noreferrer: sí
+
+# Para publicar con `php vendor/bin/ehundu desplegar`, descomenta y rellena esta sección.
+# La contraseña no va aquí, que se comparte y se versiona: va en un fichero .secretos.yml
+# (ver el README.md).
+#
+# despliegue:
+#   destino: sftp
+#   servidor: sftp.ejemplo.com
+#   usuario: usuario
+#   ruta: /home/usuario/www
+#   huella: SHA256:...   # la da el primer despliegue; compruébala con quien administra el servidor

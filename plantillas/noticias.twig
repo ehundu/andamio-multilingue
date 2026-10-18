@@ -1,0 +1,16 @@
+{% extends 'plantillas/base.twig' %}
+
+{# La lista de noticias del idioma de la página, de la más reciente a la más antigua. `fecha` escribe el día y el mes en el
+   idioma de la página: «1 de octubre de 2026» y «2026ko urriaren 1a» #}
+{% block cuerpo %}
+<div class="contenedor listado">
+  <h1>{{ pagina.titulo }}</h1>
+  <div class="prosa">{{ pagina.contenido }}</div>
+  <ul class="tarjetas tarjetas--lista">
+    {% for p in coleccion('noticias')|orden('fecha desc') %}
+    {% set dato = p.fecha|fecha %}
+    {% include 'parciales/tarjeta.twig' %}
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}

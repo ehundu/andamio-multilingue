@@ -1,0 +1,12 @@
+{% set t = datos.textos %}
+{% set e = datos.estudio %}
+<footer class="pie">
+  <div class="contenedor pie__barra">
+    <p><strong>{{ sitio.nombre }}</strong> · {{ e.lema }}</p>
+    <address>
+      {{ e.direccion }}<br>
+      <a href="mailto:{{ e.email }}">{{ e.email }}</a> · {{ e.telefono }}
+    </address>
+    <p><a href="https://ehundu.com" target="_blank" rel="noopener noreferrer">{{ t.hechoConEhundu }}<span class="oculto"> {{ t.nuevaPestana }}</span></a></p>
+  </div>
+</footer>

@@ -1,0 +1,35 @@
+{% set t = datos.textos %}
+<header class="cabecera">
+  <div class="contenedor cabecera__barra">
+    <a class="cabecera__nombre" href="{{ datos.menus.inicio }}">{{ sitio.nombre }}</a>
+
+    {# El selector de idioma: cada idioma lleva a la traducción de esta página, o a su portada si no la tiene, y entonces el
+       enlace lo dice con un texto oculto. En el 404 va a la portada de cada idioma. `lang` hace que el nombre se lea en su
+       idioma. Se ve como un interruptor aparte del menú: con el nombre del idioma en pantallas anchas y con su código
+       (ES, EU) en las estrechas, donde no cabría. Los lectores de pantalla leen siempre el nombre #}
+    <ul class="idiomas" aria-label="{{ t.idiomas }}">
+      {% for idioma in sitio.idiomas %}
+      {% set traduccion = es404 ? null : pagina.traducciones[idioma.codigo] %}
+      <li>
+        {% if idioma.codigo == pagina.idioma %}
+        <span lang="{{ idioma.codigo }}" aria-current="true"><span class="idiomas__codigo" aria-hidden="true">{{ idioma.codigo|upper }}</span><span class="idiomas__nombre">{{ idioma.nombre }}</span></span>
+        {% else %}
+        <a href="{{ traduccion ? traduccion.url : idioma.url }}" hreflang="{{ idioma.codigo }}" lang="{{ idioma.codigo }}"{% if not traduccion and not es404 %} title="{{ t.sinTraduccion }}"{% endif %}><span class="idiomas__codigo" aria-hidden="true">{{ idioma.codigo|upper }}</span><span class="idiomas__nombre">{{ idioma.nombre }}</span>{% if not traduccion and not es404 %}<span class="oculto"> ({{ t.sinTraduccion }})</span>{% endif %}</a>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+
+    {# El botón del menú en pantallas estrechas, sin JavaScript: una casilla (un interruptor para los lectores de
+       pantalla) y su etiqueta. Con una pantalla ancha no se ven y el menú está siempre a la vista #}
+    <input type="checkbox" role="switch" id="cabecera-menu" class="cabecera__casilla">
+    <label for="cabecera-menu" class="cabecera__boton"><span class="cabecera__icono" aria-hidden="true"></span><span class="oculto">{{ t.abrirMenu }}</span></label>
+    <nav aria-label="{{ t.menu }}">
+      <ul>
+        {% for entrada in datos.menus.principal %}
+        <li><a href="{{ entrada.url }}"{% if activo(entrada.url) %} aria-current="page"{% endif %}>{{ entrada.texto }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>

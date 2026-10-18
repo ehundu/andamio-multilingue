@@ -1,0 +1,14 @@
+# El menú de la cabecera en euskera. Las direcciones llevan el prefijo /eu/.
+inicio: /eu/
+contacto: /eu/kontaktua/
+servicios: /eu/zerbitzuak/
+noticias: /eu/berriak/
+principal:
+  - texto: Zerbitzuak
+    url: /eu/zerbitzuak/
+  - texto: Berriak
+    url: /eu/berriak/
+  - texto: Gutaz
+    url: /eu/gutaz/
+  - texto: Kontaktua
+    url: /eu/kontaktua/

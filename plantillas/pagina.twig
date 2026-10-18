@@ -1,0 +1,9 @@
+{% extends 'plantillas/base.twig' %}
+
+{# El layout de las páginas de texto (sobre nosotros, contacto, 404): lo que no dice `plantilla` en su front matter usa este #}
+{% block cuerpo %}
+<article class="contenedor pagina">
+  <h1>{{ pagina.titulo }}</h1>
+  <div class="prosa">{{ pagina.contenido }}</div>
+</article>
+{% endblock %}

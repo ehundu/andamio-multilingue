@@ -1,0 +1,5 @@
+# Lo que comparten todas las noticias, en todos los idiomas. Una noticia que solo tiene fichero en castellano solo existe
+# en castellano: Ehundu no la publica en euskera con el texto del otro idioma.
+plantilla: noticia
+etiquetas: [noticias]
+url: "/noticias/{{ nombreDeFichero }}/"

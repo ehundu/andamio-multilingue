@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="{{ pagina.idioma }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if pagina.url == datos.menus.inicio %}{{ sitio.nombre }}{% else %}{{ pagina.titulo }} · {{ sitio.nombre }}{% endif %}</title>
+  {% set descripcion = pagina.descripcion ?: datos.textos.descripcion %}
+  <meta name="description" content="{{ descripcion }}">
+  <link rel="canonical" href="{{ sitio.url }}{{ pagina.url }}">
+
+  {# Para los buscadores: cada página dice en qué otros idiomas existe, ella misma incluida, y cuál es la de «cualquier
+     idioma» (la del predeterminado, si existe). Solo entre las traducciones que existen. El 404 no se traduce #}
+  {% set predeterminado = sitio.idiomas|first %}
+  {% set es404 = pagina.url ends with '/404.html' %}
+  {% if not es404 %}
+  {% for codigo, traduccion in pagina.traducciones %}
+  <link rel="alternate" hreflang="{{ codigo }}" href="{{ sitio.url }}{{ traduccion.url }}">
+  {% endfor %}
+  {% if pagina.traducciones[predeterminado.codigo] %}
+  <link rel="alternate" hreflang="x-default" href="{{ sitio.url }}{{ pagina.traducciones[predeterminado.codigo].url }}">
+  {% endif %}
+  {% endif %}
+
+  {# El feed de las noticias de este idioma: /feed.xml en el predeterminado y /eu/feed.xml en euskera. Un idioma sin
+     noticias no tiene feed, y entonces no se enlaza #}
+  {% if coleccion('noticias')|length %}
+  <link rel="alternate" type="application/atom+xml" title="{{ sitio.nombre }}" href="{{ pagina.idioma == predeterminado.codigo ? '' : '/' ~ pagina.idioma }}/feed.xml">
+  {% endif %}
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ version('css/estilos.css') }}">
+</head>
+<body>
+  <a class="saltar" href="#contenido">{{ datos.textos.saltar }}</a>
+  {% include 'parciales/cabecera.twig' %}
+  <main id="contenido">
+    {% block cuerpo %}{% endblock %}
+  </main>
+  {% include 'parciales/pie.twig' %}
+</body>
+</html>

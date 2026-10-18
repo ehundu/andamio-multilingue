@@ -1,0 +1,7 @@
+# Lo que comparten todos los servicios, en todos los idiomas: la plantilla, la colección y la dirección. La etiqueta
+# `servicios` los reúne en la colección que leen la portada y la lista, y `coleccion()` saca solo los del idioma de la
+# página. Las traducciones al euskera dan su propia `url` (sin el prefijo /eu/, que pone el motor), porque el nombre del
+# fichero es el mismo en los dos idiomas y la dirección en euskera no.
+plantilla: servicio
+etiquetas: [servicios]
+url: "/servicios/{{ nombreDeFichero }}/"

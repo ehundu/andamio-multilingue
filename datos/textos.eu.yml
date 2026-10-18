@@ -1,0 +1,23 @@
+# Los textos de las plantillas en euskera. Mismas claves que textos.es.yml, traducidas.
+descripcion: Bilboko diseinu-estudioa. Marka-nortasuna, web diseinua eta argitalpen-diseinua, gaztelaniaz eta euskaraz.
+saltar: Joan edukira
+menu: Menua
+abrirMenu: Menua ireki edo itxi
+idiomas: Hizkuntza
+servicios: Zerbitzuak
+noticias: Berriak
+sinTraduccion: orri hau ez dago itzulita; hasierara eramaten du
+leerMas: Irakurri gehiago
+verServicios: Zerbitzu guztiak ikusi
+precio: Prezioa
+duracion: Iraupena
+queIncluye: Zer barne hartzen duen
+pedirPresupuesto: Eskatu aurrekontua
+ultimasNoticias: Azken berriak
+verNoticias: Berri guztiak ikusi
+volverNoticias: Itzuli berrietara
+correo: Posta elektronikoa
+telefono: Telefonoa
+direccion: Helbidea
+hechoConEhundu: Ehundurekin eginda
+nuevaPestana: (fitxa berri batean irekitzen da)

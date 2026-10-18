@@ -1,0 +1,615 @@
+/* Los estilos del sitio, en un solo fichero. Los colores y las medidas están arriba, en variables:
+   cambiando esas líneas cambia el aspecto de todo. Respeta el modo oscuro del sistema. */
+
+:root {
+  --fondo: #fbf9f6;
+  --tinta: #221c18;
+  --texto: #4a423d;
+  --apagado: #756c66;
+  --acento: #c2410c;
+  --sobre-acento: #ffffff;
+  --linea: #e6dfd8;
+  --suave: #f3eee8;
+  --tarjeta: #ffffff;
+
+  --tipo: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* La anchura del sitio y la del texto */
+  --ancho: 66rem;
+  --ancho-texto: 44rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fondo: #171412;
+    --tinta: #f6f2ee;
+    --texto: #cfc7c0;
+    --apagado: #a1978f;
+    --acento: #fb923c;
+    --sobre-acento: #1f1209;
+    --linea: #342d28;
+    --suave: #211c19;
+    --tarjeta: #1c1815;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+  font: 1.0625rem/1.65 var(--tipo);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--tinta);
+  line-height: 1.15;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw + 1rem, 3rem);
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  margin: 2.25rem 0 0.5rem;
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: var(--acento);
+}
+
+address {
+  font-style: normal;
+}
+
+/* Siempre se ve dónde está el foco del teclado */
+:focus-visible {
+  outline: 3px solid var(--acento);
+  outline-offset: 3px;
+}
+
+.contenedor {
+  width: min(100% - 2rem, var(--ancho));
+  margin-inline: auto;
+}
+
+.oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* El enlace para saltar al contenido: solo se ve al llegar a él con el teclado */
+.saltar {
+  position: absolute;
+  top: -4rem;
+  left: 1rem;
+  z-index: 10;
+  padding: 0.5rem 1rem;
+  background: var(--tinta);
+  color: var(--fondo);
+}
+
+.saltar:focus {
+  top: 1rem;
+}
+
+/* La cabecera: el nombre, el selector de idioma y el menú */
+
+.cabecera {
+  border-bottom: 1px solid var(--linea);
+}
+
+.cabecera__barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  padding-block: 1rem;
+}
+
+.cabecera__nombre {
+  margin-right: auto;
+  color: var(--tinta);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.cabecera ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cabecera nav a {
+  color: var(--texto);
+  text-decoration: none;
+}
+
+.cabecera nav a:hover,
+.cabecera nav a[aria-current="page"] {
+  color: var(--tinta);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.4em;
+}
+
+/* En pantallas anchas la cabecera va en este orden: el nombre, el menú y, al final y aparte, el selector de idioma */
+
+.cabecera nav {
+  order: 1;
+}
+
+.cabecera .idiomas {
+  order: 2;
+}
+
+/* El selector de idioma: un interruptor con borde, distinto de los enlaces del menú. El idioma actual, relleno, y los
+   demás, enlaces. Con el nombre del idioma en pantallas anchas y con su código (ES, EU) en las estrechas */
+
+.cabecera .idiomas {
+  gap: 0;
+  margin-left: 1rem;
+  padding: 0.15rem;
+  border: 1px solid var(--linea);
+  border-radius: 999px;
+  font-size: 0.875rem;
+}
+
+.idiomas a,
+.idiomas [aria-current] {
+  display: block;
+  padding: 0.2rem 0.85rem;
+  border-radius: 999px;
+}
+
+.idiomas [aria-current] {
+  background: var(--acento);
+  color: var(--sobre-acento);
+  font-weight: 700;
+}
+
+.idiomas a {
+  color: var(--texto);
+  text-decoration: none;
+}
+
+.idiomas a:hover {
+  background: var(--suave);
+  color: var(--tinta);
+}
+
+.idiomas__codigo {
+  display: none;
+}
+
+/* El botón del menú solo existe en pantallas estrechas */
+.cabecera__casilla,
+.cabecera__boton {
+  display: none;
+}
+
+@media (max-width: 48rem) {
+  .cabecera__barra {
+    flex-wrap: wrap;
+    gap: 0 0.75rem;
+    padding-block: 0.75rem;
+  }
+
+  /* La fila de la barra es el nombre, el selector y el botón; el menú, cuando se abre, ocupa toda la fila de debajo */
+  .cabecera .idiomas {
+    order: 1;
+    margin-left: 0;
+  }
+
+  .cabecera__boton {
+    order: 2;
+  }
+
+  .cabecera__nombre {
+    min-width: 0;
+    font-size: 1.125rem;
+  }
+
+  /* Con el código del idioma (ES, EU) cabe; el nombre se queda para los lectores de pantalla */
+  .idiomas a,
+  .idiomas [aria-current] {
+    padding: 0.15rem 0.6rem;
+  }
+
+  .idiomas__codigo {
+    display: inline;
+  }
+
+  .idiomas__nombre {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  /* Visualmente oculta pero con foco: el anillo de foco lo lleva la etiqueta */
+  .cabecera__casilla {
+    display: block;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    opacity: 0;
+  }
+
+  .cabecera__boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--tinta);
+    border-radius: 10px;
+    cursor: pointer;
+  }
+
+  .cabecera__boton:hover {
+    border-color: var(--acento);
+  }
+
+  .cabecera__casilla:focus-visible + .cabecera__boton {
+    outline: 3px solid var(--acento);
+    outline-offset: 3px;
+  }
+
+  /* Las tres rayas (la del medio es el propio elemento) y, con el menú abierto, una aspa */
+  .cabecera__icono,
+  .cabecera__icono::before,
+  .cabecera__icono::after {
+    display: block;
+    width: 1.25rem;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--tinta);
+  }
+
+  .cabecera__icono {
+    position: relative;
+  }
+
+  .cabecera__icono::before,
+  .cabecera__icono::after {
+    content: "";
+    position: absolute;
+    left: 0;
+  }
+
+  .cabecera__icono::before {
+    top: -6px;
+  }
+
+  .cabecera__icono::after {
+    top: 6px;
+  }
+
+  .cabecera__casilla:checked + .cabecera__boton .cabecera__icono {
+    background: transparent;
+  }
+
+  .cabecera__casilla:checked + .cabecera__boton .cabecera__icono::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .cabecera__casilla:checked + .cabecera__boton .cabecera__icono::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+
+  .cabecera nav {
+    display: none;
+    order: 3;
+    width: 100%;
+    margin-top: 0.75rem;
+  }
+
+  .cabecera__casilla:checked ~ nav {
+    display: block;
+  }
+
+  .cabecera nav ul {
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--linea);
+  }
+
+  .cabecera nav li + li {
+    border-top: 1px solid var(--linea);
+  }
+
+  .cabecera nav a {
+    display: block;
+    padding: 0.75rem 0;
+    font-size: 1.125rem;
+  }
+
+  .cabecera nav a[aria-current="page"] {
+    color: var(--acento);
+    font-weight: 700;
+    text-decoration: none;
+  }
+}
+
+/* El pie */
+
+.pie {
+  margin-top: 5rem;
+  padding-block: 2rem;
+  border-top: 1px solid var(--linea);
+  background: var(--suave);
+  font-size: 0.9375rem;
+}
+
+.pie__barra {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem 2rem;
+}
+
+.pie p {
+  margin: 0;
+}
+
+/* Un botón, y su versión clara */
+
+.boton {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border: 2px solid var(--acento);
+  border-radius: 10px;
+  background: var(--acento);
+  color: var(--sobre-acento);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.boton:hover {
+  border-color: var(--tinta);
+  background: var(--tinta);
+  color: var(--fondo);
+}
+
+.boton--claro {
+  background: transparent;
+  color: var(--acento);
+}
+
+/* Una página de texto (sobre nosotros, contacto, 404) */
+
+.pagina {
+  width: min(100% - 2rem, var(--ancho-texto));
+  padding-block: 3rem 1rem;
+}
+
+.antetitulo {
+  margin: 0 0 0.75rem;
+  color: var(--apagado);
+  font-size: 0.9375rem;
+}
+
+.antetitulo a {
+  color: var(--apagado);
+}
+
+/* El texto: Markdown corriente, así que todo lo que lleva se estiliza aquí */
+
+.prosa {
+  max-width: var(--ancho-texto);
+}
+
+.pagina h1 + .prosa,
+.listado h1 + .prosa {
+  margin-top: 1.25rem;
+}
+
+.prosa > :first-child {
+  margin-top: 0;
+}
+
+.prosa h2 {
+  margin: 2.25rem 0 0.4rem;
+  font-size: 1.375rem;
+}
+
+.prosa p,
+.prosa ul,
+.prosa ol {
+  margin: 1rem 0 0;
+}
+
+.prosa ul,
+.prosa ol {
+  padding-left: 1.5rem;
+}
+
+.prosa li + li {
+  margin-top: 0.4rem;
+}
+
+/* La portada */
+
+.portada__cabecera {
+  max-width: 46rem;
+  padding-block: clamp(2.5rem, 7vw, 5rem) 2.5rem;
+}
+
+.portada__cabecera h1 {
+  font-size: clamp(2.5rem, 7vw + 0.5rem, 4.5rem);
+  letter-spacing: -0.035em;
+}
+
+.portada__cabecera .prosa {
+  margin-top: 1.25rem;
+  font-size: 1.1875rem;
+}
+
+.portada__botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.75rem 0 0;
+}
+
+.portada__bloque {
+  margin-top: 3.5rem;
+}
+
+.portada__bloque h2 {
+  margin: 0 0 1.25rem;
+}
+
+.portada__mas {
+  margin: 1.5rem 0 0;
+  font-weight: 700;
+}
+
+/* Las tarjetas de los servicios y de las noticias */
+
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tarjetas--lista {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.tarjeta__enlace {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  height: 100%;
+  padding: 1.25rem 1.35rem;
+  border: 1px solid var(--linea);
+  border-radius: 14px;
+  background: var(--tarjeta);
+  color: var(--tinta);
+  text-decoration: none;
+}
+
+.tarjeta__enlace:hover {
+  border-color: var(--acento);
+}
+
+.tarjeta__enlace strong {
+  font-size: 1.1875rem;
+  line-height: 1.25;
+}
+
+.tarjeta__texto {
+  color: var(--texto);
+  font-size: 0.9375rem;
+}
+
+.tarjeta__dato {
+  margin-top: auto;
+  padding-top: 0.5rem;
+  color: var(--acento);
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+/* Una lista (de servicios o de noticias) */
+
+.listado {
+  padding-block: 2.5rem 1rem;
+}
+
+.listado .tarjetas {
+  margin-top: 2rem;
+}
+
+/* La ficha de un servicio y una noticia */
+
+.ficha {
+  width: min(100% - 2rem, var(--ancho-texto));
+  padding-block: 2.5rem 1rem;
+}
+
+.ficha__resumen {
+  margin: 1rem 0 0;
+  font-size: 1.25rem;
+}
+
+.ficha__datos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 3rem;
+  margin: 2rem 0;
+  padding-block: 1.25rem;
+  border-block: 1px solid var(--linea);
+}
+
+.ficha__datos dt {
+  color: var(--apagado);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.ficha__datos dd {
+  margin: 0.15rem 0 0;
+  color: var(--tinta);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.ficha__incluye {
+  margin: 0.5rem 0 0;
+  padding-left: 1.5rem;
+}
+
+.ficha__incluye li + li {
+  margin-top: 0.35rem;
+}
+
+.ficha .prosa {
+  margin-top: 2rem;
+}
+
+.ficha__cita {
+  margin: 2.5rem 0 0;
+  font-weight: 700;
+}

@@ -1,0 +1,24 @@
+# Los textos de las plantillas en castellano: todo lo que escriben las plantillas y no es contenido de una página.
+# textos.eu.yml tiene las mismas claves, traducidas. Si una clave falta en un idioma, sale vacía en sus páginas.
+descripcion: Estudio de diseño en Bilbao. Identidad de marca, diseño web y diseño editorial, en castellano y en euskera.
+saltar: Ir al contenido
+menu: Menú
+abrirMenu: Abrir o cerrar el menú
+idiomas: Idioma
+servicios: Servicios
+noticias: Noticias
+sinTraduccion: esta página no está traducida; lleva a la portada
+leerMas: Leer más
+verServicios: Ver todos los servicios
+precio: Precio
+duracion: Duración
+queIncluye: Qué incluye
+pedirPresupuesto: Pide presupuesto
+ultimasNoticias: Últimas noticias
+verNoticias: Ver todas las noticias
+volverNoticias: Volver a las noticias
+correo: Correo
+telefono: Teléfono
+direccion: Dirección
+hechoConEhundu: Hecho con Ehundu
+nuevaPestana: (se abre en una pestaña nueva)

@@ -1,0 +1,29 @@
+{% extends 'plantillas/base.twig' %}
+
+{# La ficha de un servicio. El precio y la duración son texto de cada idioma; el orden está en el .yml común de la página #}
+{% block cuerpo %}
+{% set t = datos.textos %}
+<article class="contenedor ficha">
+  <header>
+    <p class="antetitulo"><a href="{{ datos.menus.servicios }}">{{ t.servicios }}</a></p>
+    <h1>{{ pagina.titulo }}</h1>
+    {% if pagina.descripcion %}<p class="ficha__resumen">{{ pagina.descripcion }}</p>{% endif %}
+  </header>
+
+  <dl class="ficha__datos">
+    {% if pagina.precio %}<div><dt>{{ t.precio }}</dt><dd>{{ pagina.precio }}</dd></div>{% endif %}
+    {% if pagina.duracion %}<div><dt>{{ t.duracion }}</dt><dd>{{ pagina.duracion }}</dd></div>{% endif %}
+  </dl>
+
+  {% if pagina.incluye %}
+  <h2>{{ t.queIncluye }}</h2>
+  <ul class="ficha__incluye">
+    {% for i in pagina.incluye %}<li>{{ i }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+
+  <div class="prosa">{{ pagina.contenido }}</div>
+
+  <p class="ficha__cita"><a class="boton" href="{{ datos.menus.contacto }}">{{ t.pedirPresupuesto }}</a></p>
+</article>
+{% endblock %}
