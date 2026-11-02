@@ -21,7 +21,7 @@
     "homepage": "https://ehundu.com/documentacion/empezar/",
     "require": {
         "php": ">=8.4",
-        "ehundu/ehundu": "^0.16"
+        "ehundu/ehundu": "^1.0"
     },
     "scripts": {
         "servir": "ehundu servir",
